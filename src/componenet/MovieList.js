@@ -2,12 +2,15 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-const MovieList = ({movie,handeldelete}) => {
+
+const MovieList = ({movie,handeldelete,handelvu}) => {
 
 const remove=()=>{
   handeldelete(movie.id)
 }
-
+const Vu=()=>{
+  handelvu(movie.id)
+}
 
   return (
     <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
@@ -29,10 +32,14 @@ const remove=()=>{
         <Button variant="primary" >Go somewhere</Button>
       </Card.Body>
     </Card>
-
-    <Button onClick={()=>remove()}>Delete</Button>
-    
-    <Button>Vu / Non Vu</Button>
+    <>
+      <Button onClick={()=>remove()}  variant="primary" size="lg" active>
+        Delete
+      </Button>{' '}
+      <Button onClick={()=>Vu()} variant="secondary" size="lg" active>
+       {movie.isDone ? "Vu" : "Non vu"}
+      </Button>
+    </>
     </div>
   )
 }
